@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance App</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="main-container">
+        <!-- Header -->
+        <header class="app-header">
+            <h1>Attendance App</h1>
+        </header>
+        <!-- Calendar and Content Row -->
+        <div class="calendar-content-row">
+            <!-- Calendar Section -->
+            <div class="calendar">
+                <div class="calendar-header">
+                    <button class="nav-button" onclick="prevMonth()">←</button>
+                    <span id="calendar-month-year"></span>
+                    <button class="nav-button" onclick="nextMonth()">→</button>
+                </div>
+                <div class="calendar-grid" id="calendar-grid"></div>
+            </div>
+            <!-- Content Section -->
+            <div class="content-container">
+                <!-- Registration Section -->
+                <div id="register-section" class="section active">
+                    <h2>Register</h2>
+                    <form id="register-form">
+                        <input type="text" id="reg-username" placeholder="Username" required>
+                        <input type="password" id="reg-password" placeholder="Password" required>
+                        <button type="submit">Register</button>
+                    </form>
+                    <p>Already have an account? <a href="#" onclick="showSection('login-section')">Login</a></p>
+                    <div id="register-error" class="error"></div>
+                    <div id="register-success" class="success"></div>
+                </div>
+
+                <!-- Login Section -->
+                <div id="login-section" class="section">
+                    <h2>Login</h2>
+                    <form id="login-form">
+                        <input type="text" id="login-username" placeholder="Username" required>
+                        <input type="password" id="login-password" placeholder="Password" required>
+                        <input type="text" id="login-otp" placeholder="OTP" required>
+                        <button type="submit">Login</button>
+                    </form>
+                    <p>Need an account? <a href="#" onclick="showSection('register-section')">Register</a></p>
+                    <button class="back-button" onclick="showSection('register-section')">Back to Home</button>
+                    <div id="login-error" class="error"></div>
+                </div>
+
+                <!-- User Dashboard -->
+                <div id="user-section" class="section">
+                    <h2>Welcome, User!</h2>
+                    <button onclick="recordAttendance()">Record Attendance</button>
+                    <button class="back-button" onclick="showSection('login-section')">Back to Login</button>
+                    <div id="user-message" class="success"></div>
+                </div>
+
+                <!-- Admin Dashboard -->
+                <div id="admin-section" class="section">
+                    <h2>Welcome, Admin!</h2>
+                    <div class="admin-actions">
+                        <button onclick="showAdminAction('reset-password')">Reset Password</button>
+                        <button onclick="showAdminAction('change-role')">Change Role</button>
+                        <button onclick="showAdminAction('delete-user')">Delete User</button>
+                        <button onclick="showAdminAction('list-users')">List Users</button>
+                    </div>
+                    <div id="admin-action-form"></div>
+                    <button class="back-button" onclick="showSection('login-section')">Back to Login</button>
+                    <div id="admin-message" class="success"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/static/scripts.js"></script>
+</body>
+</html>
